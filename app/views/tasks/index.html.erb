@@ -1,0 +1,26 @@
+<div class="row nav justify-content-center">
+  <h2 class='nav-item mt-5'>Your Tasks</h2>
+</div>
+<br>
+<div class='row m-auto justify-content-center'>
+  <ul class='list-group-flush'>
+    <% @tasks.each do |task| %>
+    <li class='list-group-item'>
+      <div>
+        <input type="checkbox" id=<%= task.id %> <%= task.completed ? 'checked' : '' %>>
+        <label for=<%= task.id %>><%= link_to task.title, task_path(task.id) %></label>
+        <%= link_to task_path(task.id), method: :delete, data: { confirm: "Are you sure ?" } do %>
+          <i class="far fa-trash-alt"></i>
+        <% end %>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<br>
+<div class="row m-auto justify-content-center">
+  <%= link_to new_path, class: 'd-flex flex-row' do %>
+    <div><i class="fas fa-plus mr-2"></i></div>
+    <p class='m-0'>Add a new task</p>
+  <% end %>
+</div>
